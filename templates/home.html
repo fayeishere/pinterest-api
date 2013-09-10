@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h2>Pinterest API</h2>
+    <h3>Docs</h3>
+    	<h4>Search</h4>
+    	<p>add search term to end of url</p>
+    	<p>If more than one word use this format: "squirrel%20with%20hat"</p>
+    	<p>url/pinterestfeed/meta/"your search"</p>
+    	<p>get json first page of pinterest search result: id, description, social stats</p>
+			<h4>Image Origin</h4>
+    	<p>add id number to end of url</p>
+    	<p>url/pinterestfeed/meta/"id"</p>
+    	<p>get origin of the image pinned</p>
+    	<h4>Example - unicorn search</h4>
+    	<p>
+ {
+  "meta": [
+    {
+      "0": [
+        "134545107590826375", 
+        "This was the birthday card.  The inside says, \"Mmm... Rainbow-y goodness.  Happy Birthday\"", 
+        [
+          "239 repins", 
+          "112 likes", 
+          "2 comments"
+        ]
+      ], 
+      "1": [
+        "35114072068092006", 
+        "Unicorn", 
+        [
+          "1 repin", 
+          "1 like"
+        ]
+      ]
+    }
+	]
+}
+</p>
+			<h4>Example - Origin of first unicorn # 134545107590826375</h4>
+			<p>
+{
+  "pin_origin": [
+    {
+      "pin_origin": "/robynd23/"
+    }
+  ]
+}
+			</p>
+  </div>
+{% endblock %}

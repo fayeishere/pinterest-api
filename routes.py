@@ -2,10 +2,8 @@ from flask import Flask, render_template, request, flash, jsonify
 import urllib3
 from bs4 import BeautifulSoup
  
- 
 app = Flask(__name__) 
 
- 
 @app.route('/')
 def home():
   return render_template('home.html')
@@ -18,7 +16,6 @@ def pin(new_subject):
   # old%20spice
 
   subject_request = http.request('GET', 'http://pinterest.com/search/pins/?q=' + request_subject)
-
 
   # TODO TRYING TO FIGURE OUT HOW TO REQUEST INFINITE SCROLLING FOR SEARCH
 
@@ -68,18 +65,13 @@ def pin(new_subject):
       pin_social = pin_society[0].select('a')
       for social in pin_social:
         social_list.append(social.string.strip())
-      print "END of trying"
     except:
       social_list.append("No Social Data Available")
     social_dict[count] = social_list
     main_dict[count] = [pin_dict[count], descr_dict[count], social_dict[count]]
     count += 1
 
-  print "END OF IT ALL"
-
-  print main_dict
   api_dict = main_dict
-  print api_dict
   meta = [
       api_dict
   ]
@@ -89,8 +81,6 @@ def pin(new_subject):
 def origin(pin_id):
   http = urllib3.PoolManager()
   # Take our pin id and call its focus page to get the image's origin
-  # for key in pin_dict:
-  # pin_id = pin_dict[key]
   pin_request = http.request('GET', 'http://pinterest.com/pin/' + pin_id)
   pin_data = pin_request.data
   pin_soup = BeautifulSoup(pin_data)
